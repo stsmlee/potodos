@@ -1,4 +1,5 @@
 import { compareAsc, format } from 'date-fns'
+import './style.css'
 
 function component() {
     const element = document.createElement('div');
@@ -7,5 +8,10 @@ function component() {
 
     return element;
   }
+
+const container = document.createElement('div')
+container.setAttribute('id', 'container')
+container.appendChild(component())
+document.body.appendChild(container)
   
-  document.body.appendChild(component());
+// document.body.appendChild(component());
