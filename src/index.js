@@ -1,16 +1,12 @@
-import { compareAsc, format } from 'date-fns'
+// import { compareAsc, format } from 'date-fns'
+import { createTaskDiv } from './taskmaster'
 import './style.css'
-
-function createTaskDiv() {
-    const element = document.createElement('div');
-    element.innerHTML = format(new Date(2014, 1, 11), 'yyyy-MM-dd');
-    element.classList.add('task')
-    return element;
-  }
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
+
 for (let i=0;i<5;i++) {
-    container.appendChild(createTaskDiv())
+    container.appendChild(createTaskDiv('Spudding', 'making potatoes', '2024', '07', '30'))
 }
+
 document.body.appendChild(container)
