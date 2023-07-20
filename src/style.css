@@ -122,7 +122,7 @@ h1 {
   }
   
   /* Add a red background color to the cancel button */
-  .form-container .close-button {
+  .form-container .close-btn {
     background-color: red;
   }
   
