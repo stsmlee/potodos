@@ -1,7 +1,8 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
 
-export function createTaskDiv(name, description, entryTS, year=null, month=null, day=null) {
+export function createTaskDiv(taskid, name, description, entryTS, year=null, month=null, day=null) {
     const task = document.createElement('div');
+    task.id = 'no' + taskid;
     const title = document.createElement('div');
     const dates = document.createElement('div');
     const entryTimeStamp = document.createElement('div')

@@ -3,19 +3,9 @@ import { compareAsc, compareDesc, format } from 'date-fns'
 
 let id = 0;
 
-// export function initTaskDict() {
-//     if (window.localStorage.hasOwnProperty('taskdict')) {
-//         return
-//     } else {
-//         window.localStorage.setItem('taskdict', JSON.stringify({}))
-//     };
-// };
-
-export function initTaskDict() {
+function initTaskDict() {
     window.localStorage.setItem('taskdict', JSON.stringify({}))
 };
-
-// initTaskDict()
 
 export function getTaskDict() {
     if (!JSON.parse(window.localStorage.getItem('taskdict'))) initTaskDict();
@@ -23,9 +13,9 @@ export function getTaskDict() {
 }
 
 let taskDict = getTaskDict()
-for (let [k,v] of Object.entries(taskDict)) {
-    console.log(`${k}: ${v}`)
-}
+// for (let [k,v] of Object.entries(taskDict)) {
+//     console.log(`${k}: ${v}`)
+// }
 
 function addTaskDict(title,details,entryTimeStamp,dueDate) {
     taskDict[id] = {
@@ -50,7 +40,6 @@ export function addTask(DOMform) {
             title.value = ""
             details.value = ""
             dueDate = new Date()
-            // console.log(taskDict)
         };
     });
 };
