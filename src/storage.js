@@ -1,7 +1,17 @@
 import { openForm, closeForm } from './taskmaster'
 import { compareAsc, compareDesc, format } from 'date-fns'
 
-let id = 0;
+
+
+
+function getCurrentID() {
+    if (!window.localStorage.getItem('currentID')) window.localStorage.setItem('currentID', 0);
+    return +window.localStorage.getItem('currentID');
+}
+
+function setCurrentID(id) {
+    window.localStorage.setItem('currentID', id)
+}
 
 function initTaskDict() {
     window.localStorage.setItem('taskdict', JSON.stringify({}))
@@ -18,9 +28,11 @@ let taskDict = getTaskDict()
 // }
 
 function addTaskDict(title,details,entryTimeStamp,dueDate) {
-    taskDict[id] = {
+    let currentID = +getCurrentID()
+    taskDict[getCurrentID()] = {
         'title': title, 'details': details, 'entryTimeStamp': entryTimeStamp, 'dueDate': dueDate
     };
+    setCurrentID(++currentID)
     window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
 }
 
@@ -36,7 +48,6 @@ export function addTask(DOMform) {
         } else {
             const entryTimestamp = new Date()
             addTaskDict(title.value,details.value,entryTimestamp,dueDate.value)
-            id++;
             title.value = ""
             details.value = ""
             dueDate = new Date()

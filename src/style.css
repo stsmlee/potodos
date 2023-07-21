@@ -47,12 +47,16 @@ h1 {
     line-height: 1.5em;
 }
 
-.dueDate, .entryDate, .dates{
+/* .dueDate, .entryDate, .dates{
     font-size: 1em;
     text-align: right;
     margin-top: auto;
+} */
+.dates{
+  font-size: 1em;
+  text-align: right;
+  margin-top: auto;
 }
-
 
 
 /* Button used to open the contact form - fixed at the bottom of the page */
