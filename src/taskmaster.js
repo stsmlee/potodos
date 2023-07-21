@@ -1,6 +1,6 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
 
-export function createTaskDiv(taskid, name, description, entryTS, year=null, month=null, day=null) {
+export function createTaskDiv(taskid, name, description, entryTS, due) {
     const task = document.createElement('div');
     task.id = 'div' + taskid;
     const title = document.createElement('div');
@@ -14,10 +14,10 @@ export function createTaskDiv(taskid, name, description, entryTS, year=null, mon
     title.classList.add('title');
     title.innerText = name;
     dates.classList.add('dates')
-    // const today = new Date()
-    entryTimeStamp.innerHTML = 'entered: ' + format(new Date(), 'yyyy-MM-dd');
-    if (year && month && day) {
-      dueDate.innerHTML = 'due on: ' + format(new Date(+year, +month-1, +day), 'yyyy-MM-dd');
+    entryTimeStamp.innerText = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
+    if (due) {
+      // dueDate.innerHTML = 'due on: ' + format(Date.parse(due), 'yyyy-MM-dd');
+      dueDate.innerText ='due on: ' + due;
     }
     task.appendChild(title);
     task.appendChild(details);

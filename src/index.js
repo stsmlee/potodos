@@ -21,10 +21,6 @@ function loadTaskDict() {
 
 loadTaskDict()
 
-// for (let i=0;i<5;i++) {
-//     container.appendChild(createTaskDiv('Spudding', 'making potatoes', '2024', '07', '30'))
-// }
-
 document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
