@@ -3,9 +3,9 @@ import { createTaskDiv, newTaskForm } from './taskmaster'
 import { getTaskDict, addTask } from './storage'
 import './style.css'
 
-// let taskDict = getTaskDict()
-// console.log(taskDict)
-localStorage.clear()
+// localStorage.clear()
+let taskDict = getTaskDict()
+console.log(taskDict)
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
