@@ -18,8 +18,7 @@ document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
 
-const taskForm = document.getElementById('new-task-popup')
-// const taskForm = document.getElementById('form')
+const taskForm = document.getElementById('new-task-div')
 addTask(taskForm)
 
 

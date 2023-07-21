@@ -32,12 +32,14 @@ export function addTask(DOMform) {
             alert('Title section of form must be filled.');
             openForm();
         } else {
-            if (!details.value) details = "N/A";
-            if (!dueDate.value) dueDate = "N/A";
             const entryTimestamp = new Date()
-            console.log(title.value, details.value, entryTimestamp, dueDate.value)
             addTaskDict(title.value,details.value,entryTimestamp,dueDate.value)
-            id++
+            id++;
+            title.value = ""
+            details.value = ""
+            dueDate = new Date()
+            // console.log(taskDict[0])
+            console.log(taskDict)
         };
     });
 };
