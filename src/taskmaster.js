@@ -57,6 +57,7 @@ export function newTaskForm() {
   newTitleLabel.textContent = 'Title';
   newTitleLabel.style.fontWeight = 'bold' ;
   newTitle.setAttribute('id', 'new-title');
+  newTitleLabel.htmlFor = 'new-title'
   newTitle.required = 'true';
   newTitle.placeholder = "Enter title of your task (Required)";
 
@@ -67,6 +68,7 @@ export function newTaskForm() {
   newDetailsLabel.textContent = 'Details';
   newDetailsLabel.style.fontWeight = 'bold';
   newDetails.setAttribute('id', 'new-details');
+  newDetailsLabel.htmlFor = 'new-details'
   newDetails.placeholder = "Enter task details (optional)";
 
   const newDueDate =  document.createElement('input');
@@ -76,6 +78,7 @@ export function newTaskForm() {
   newDueDateLabel.textContent = 'Due date (Optional)';
   newDueDateLabel.style.fontWeight = 'bold';
   newDueDate.setAttribute('id', 'new-due-date');
+  newDueDateLabel.htmlFor = 'new-due-date'
   newDueDate.min = format(new Date(), 'yyyy-MM-dd');
 
   const submitBtn = document.createElement('button');

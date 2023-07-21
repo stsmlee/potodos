@@ -1,12 +1,25 @@
 import { openForm, closeForm } from './taskmaster'
 import { compareAsc, compareDesc, format } from 'date-fns'
 
+let id = 0;
+
 export function initTaskDict() {
-    localStorage.setItem('taskdict', JSON.stringify({}))
+    window.localStorage.setItem('taskdict', JSON.stringify({}))
 }
 
+initTaskDict()
+
 export function getTaskDict() {
-    return JSON.parse(localStorage.getItem('taskdict'))
+    return JSON.parse(window.localStorage.getItem('taskdict'))
+}
+
+let taskDict = getTaskDict()
+
+function addTaskDict(title,details,entryTimeStamp,dueDate) {
+    taskDict[id] = JSON.stringify({
+        'title': title, 'details': details, 'entryTimeStamp': entryTimeStamp, 'dueDate': dueDate
+    })
+    window.localStorage.setItem('taskdict', taskDict)
 }
 
 export function addTask(DOMform) {
@@ -19,10 +32,24 @@ export function addTask(DOMform) {
             alert('Title section of form must be filled.');
             openForm();
         } else {
-            title.value = ""
-            details.value = ""
-            dueDate.value = new Date()
+            if (!details.value) details = "N/A";
+            if (!dueDate.value) dueDate = "N/A";
             const entryTimestamp = new Date()
+            console.log(title.value, details.value, entryTimestamp, dueDate.value)
+            addTaskDict(title.value,details.value,entryTimestamp,dueDate.value)
+            id++
         };
     });
 };
+
+// taskdict = {
+//     1: {
+//         title: 'title',
+//         details: 'details',
+//         entry: 'entryTimeStamp',
+//         due: 'dueDate'
+//     },
+//     2: {
+//         'repeat'
+//     }
+// }

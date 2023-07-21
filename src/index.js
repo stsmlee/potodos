@@ -1,11 +1,11 @@
 // import { compareAsc, compareDesc, format } from 'date-fns'
 import { createTaskDiv, newTaskForm } from './taskmaster'
-import { initTaskDict, getTaskDict, addTask } from './storage'
+import { getTaskDict, addTask } from './storage'
 import './style.css'
 
-initTaskDict()
-let taskDict = getTaskDict()
-console.log(taskDict)
+// let taskDict = getTaskDict()
+// console.log(taskDict)
+localStorage.clear()
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
@@ -18,7 +18,8 @@ document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
 
-const taskForm = document.getElementById('new-task-div')
+const taskForm = document.getElementById('new-task-popup')
+// const taskForm = document.getElementById('form')
 addTask(taskForm)
 
 
