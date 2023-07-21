@@ -14,9 +14,8 @@ container.setAttribute('id', 'container')
 //     console.log(`${k}: ${v}`)
 // }
 
-Object.entries(taskDict).forEach(([key,value]) => {
-    // console.log(key, value)
-    container.appendChild(createTaskDiv(key, value.title, value.details, value.entryTimeStamp, value.dueDate))
+Object.entries(taskDict).forEach(([id,value]) => {
+    container.appendChild(createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate))
 })
 
 // for (let i=0;i<5;i++) {

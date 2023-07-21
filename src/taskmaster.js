@@ -2,18 +2,18 @@ import { compareAsc, compareDesc, format } from 'date-fns'
 
 export function createTaskDiv(taskid, name, description, entryTS, year=null, month=null, day=null) {
     const task = document.createElement('div');
-    task.id = 'no' + taskid;
+    task.id = 'div' + taskid;
     const title = document.createElement('div');
     const dates = document.createElement('div');
     const entryTimeStamp = document.createElement('div')
     const dueDate = document.createElement('div');
     const details = document.createElement('div');
-    dates.classList.add('dates')
     task.classList.add('task');
     details.classList.add('details');
     details.textContent = description
     title.classList.add('title');
     title.innerText = name;
+    dates.classList.add('dates')
     // const today = new Date()
     entryTimeStamp.innerHTML = 'entered: ' + format(new Date(), 'yyyy-MM-dd');
     if (year && month && day) {
@@ -24,6 +24,7 @@ export function createTaskDiv(taskid, name, description, entryTS, year=null, mon
     dates.appendChild(entryTimeStamp);
     if (dueDate) dates.appendChild(dueDate);
     task.appendChild(dates)
+    const deleteBtn = document.createElement('button')
     return task;
   }
 
