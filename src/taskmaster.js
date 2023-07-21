@@ -1,9 +1,10 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
-export function createTaskDiv(name, description, year=null, month=null, day=null) {
+
+export function createTaskDiv(name, description, entryTS, year=null, month=null, day=null) {
     const task = document.createElement('div');
     const title = document.createElement('div');
     const dates = document.createElement('div');
-    const entryDate = document.createElement('div')
+    const entryTimeStamp = document.createElement('div')
     const dueDate = document.createElement('div');
     const details = document.createElement('div');
     dates.classList.add('dates')
@@ -12,14 +13,14 @@ export function createTaskDiv(name, description, year=null, month=null, day=null
     details.textContent = description
     title.classList.add('title');
     title.innerText = name;
-    const today = new Date()
-    entryDate.innerHTML = 'entered: ' + format(today, 'yyyy-MM-dd');
+    // const today = new Date()
+    entryTimeStamp.innerHTML = 'entered: ' + format(new Date(), 'yyyy-MM-dd');
     if (year && month && day) {
       dueDate.innerHTML = 'due on: ' + format(new Date(+year, +month-1, +day), 'yyyy-MM-dd');
     }
     task.appendChild(title);
     task.appendChild(details);
-    dates.appendChild(entryDate);
+    dates.appendChild(entryTimeStamp);
     if (dueDate) dates.appendChild(dueDate);
     task.appendChild(dates)
     return task;
@@ -47,10 +48,12 @@ export function newTaskForm() {
 
   const newTaskForm = document.createElement('form');
   newTaskForm.classList.add('form-container');
+  newTaskForm.noValidate=true;
 
   const newTitle = document.createElement('input');
   const newTitleLabel = document.createElement('label');
   newTitle.type = 'text';
+  newTitle.name = 'new-title'
   newTitleLabel.textContent = 'Title';
   newTitleLabel.style.fontWeight = 'bold' ;
   newTitle.setAttribute('id', 'new-title');
@@ -60,6 +63,7 @@ export function newTaskForm() {
   const newDetails = document.createElement('input');
   const newDetailsLabel = document.createElement('label');
   newDetails.type = 'text';
+  newDetails.naem = 'new-details'
   newDetailsLabel.textContent = 'Details';
   newDetailsLabel.style.fontWeight = 'bold';
   newDetails.setAttribute('id', 'new-details');
@@ -68,6 +72,7 @@ export function newTaskForm() {
   const newDueDate =  document.createElement('input');
   const newDueDateLabel = document.createElement('label');
   newDueDate.type = 'date';
+  newDueDate.name = 'new-due-date'
   newDueDateLabel.textContent = 'Due date (Optional)';
   newDueDateLabel.style.fontWeight = 'bold';
   newDueDate.setAttribute('id', 'new-due-date');
@@ -100,6 +105,8 @@ export function newTaskForm() {
 };
 
 
+
+
 // const dates = [
 //     { timestamp: new Date(1995, 6, 2),
 //       task: 'eat that potato'
@@ -114,3 +121,4 @@ export function newTaskForm() {
 // dates.sort(compareAsc)
 // dates.sort((a, b) => compareAsc(a.timestamp, b.timestamp))
 // export {dates}
+

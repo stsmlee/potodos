@@ -1,6 +1,11 @@
-import { compareAsc, compareDesc, format } from 'date-fns'
-import { createTaskDiv, dates, openForm, closeForm, newTaskForm } from './taskmaster'
+// import { compareAsc, compareDesc, format } from 'date-fns'
+import { createTaskDiv, newTaskForm } from './taskmaster'
+import { initTaskDict, getTaskDict, addTask } from './storage'
 import './style.css'
+
+initTaskDict()
+let taskDict = getTaskDict()
+console.log(taskDict)
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
@@ -13,29 +18,7 @@ document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
 
-// let newBookForm = document.getElementById('add-form')
-// newBookForm.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     let title = document.getElementById('new-title')
-//     let author = document.getElementById('new-author')
-//     let status = document.getElementById('new-status')
-//     let newBook;
-//     if (!title.value || !author.value) {
-//         alert('All sections of form must be filled.');
-//         openForm();
-//     } else {
-//         if (status.checked) {
-//             newBook = new Book(title.value,author.value,'Read');
-//         } else {
-//             newBook = new Book(title.value,author.value,'Not yet');
-//         }
-//         title.value = ""
-//         author.value = ""
-//         status.checked = false
-//         addBookToLibrary(newBook)
-//         updateBookshelf()
-//     };
-// });
+const taskForm = document.getElementById('new-task-div')
+addTask(taskForm)
 
-// console.log(dates)
-// dates.forEach((date)=>console.log(date.task))
+
