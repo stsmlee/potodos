@@ -16,7 +16,6 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     dates.classList.add('dates')
     entryTimeStamp.innerText = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
     if (due) {
-      // dueDate.innerHTML = 'due on: ' + format(Date.parse(due), 'yyyy-MM-dd');
       dueDate.innerText ='due on: ' + due;
     }
     task.appendChild(title);
