@@ -49,3 +49,11 @@ export function addTask(DOMform) {
         };
     });
 };
+
+export function deleteTask(e) {
+    const container = document.getElementById('container')
+    const taskid = e.target.id;
+    delete taskDict[taskid];
+    container.removeChild(document.getElementById('div'+taskid))
+    window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
+};

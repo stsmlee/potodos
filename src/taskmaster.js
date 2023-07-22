@@ -1,5 +1,5 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
-
+import { deleteTask } from './storage';
 export function createTaskDiv(taskid, name, description, entryTS, due) {
     const task = document.createElement('div');
     task.id = 'div' + taskid;
@@ -25,6 +25,8 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     deleteBtn.type = 'button'
     deleteBtn.innerHTML = '&#128465;'
     deleteBtn.className = 'delete-btn'
+    deleteBtn.id = taskid
+    deleteBtn.onclick = deleteTask
     datesWrapper.appendChild(deleteBtn)
     dates.appendChild(entryTimeStamp);
     if (dueDate) dates.appendChild(dueDate);
@@ -44,14 +46,14 @@ export function closeForm() {
 
 export function newTaskForm() {
   const openBtn = document.createElement('button');
-  openBtn.setAttribute('id', 'open-button');
+  openBtn.id = 'open-button';
   openBtn.textContent = 'Add a new task?';
   openBtn.onclick = openForm;
 
   container.appendChild(openBtn);
 
   const newTaskDiv = document.createElement('div');
-  newTaskDiv.setAttribute('id', 'new-task-div');
+  newTaskDiv.id = 'new-task-div';
   newTaskDiv.style.display = 'none';
 
   const newTaskForm = document.createElement('form');
@@ -64,7 +66,7 @@ export function newTaskForm() {
   newTitle.name = 'new-title'
   newTitleLabel.textContent = 'Title';
   newTitleLabel.style.fontWeight = 'bold' ;
-  newTitle.setAttribute('id', 'new-title');
+  newTitle.id = 'new-title';
   newTitleLabel.htmlFor = 'new-title'
   newTitle.required = 'true';
   newTitle.placeholder = "Enter title of your task (Required)";
@@ -72,10 +74,10 @@ export function newTaskForm() {
   const newDetails = document.createElement('input');
   const newDetailsLabel = document.createElement('label');
   newDetails.type = 'text';
-  newDetails.naem = 'new-details'
+  newDetails.name = 'new-details'
   newDetailsLabel.textContent = 'Details';
   newDetailsLabel.style.fontWeight = 'bold';
-  newDetails.setAttribute('id', 'new-details');
+  newDetails.id = 'new-details';
   newDetailsLabel.htmlFor = 'new-details'
   newDetails.placeholder = "Enter task details (optional)";
 
@@ -85,7 +87,7 @@ export function newTaskForm() {
   newDueDate.name = 'new-due-date'
   newDueDateLabel.textContent = 'Due date (Optional)';
   newDueDateLabel.style.fontWeight = 'bold';
-  newDueDate.setAttribute('id', 'new-due-date');
+  newDueDate.id = 'new-due-date';
   newDueDateLabel.htmlFor = 'new-due-date'
   newDueDate.min = format(new Date(), 'yyyy-MM-dd');
 
