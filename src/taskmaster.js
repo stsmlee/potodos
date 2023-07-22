@@ -8,22 +8,29 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     const entryTimeStamp = document.createElement('div')
     const dueDate = document.createElement('div');
     const details = document.createElement('div');
+    const datesWrapper = document.createElement('div')
+    datesWrapper.className = 'dates-wrapper'
     task.classList.add('task');
     details.classList.add('details');
     details.textContent = description
     title.classList.add('title');
-    title.innerText = name;
+    title.textContent = name;
     dates.classList.add('dates')
-    entryTimeStamp.innerText = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
-    if (due) {
-      dueDate.innerText ='due on: ' + due;
-    }
+    entryTimeStamp.textContent = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
+    if (due) dueDate.textContent ='due on: ' + due;
     task.appendChild(title);
     task.appendChild(details);
+
+    const deleteBtn = document.createElement('button')
+    deleteBtn.type = 'button'
+    deleteBtn.innerHTML = '&#128465;'
+    deleteBtn.className = 'delete-btn'
+    datesWrapper.appendChild(deleteBtn)
     dates.appendChild(entryTimeStamp);
     if (dueDate) dates.appendChild(dueDate);
-    task.appendChild(dates)
-    const deleteBtn = document.createElement('button')
+    datesWrapper.appendChild(dates);
+    task.appendChild(datesWrapper)
+
     return task;
   }
 

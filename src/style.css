@@ -47,15 +47,26 @@ h1 {
     line-height: 1.5em;
 }
 
-/* .dueDate, .entryDate, .dates{
-    font-size: 1em;
-    text-align: right;
-    margin-top: auto;
-} */
-.dates{
+.dates-wrapper{
+  display: flex;
+  justify-content: space-between;
   font-size: 1em;
-  text-align: right;
   margin-top: auto;
+  flex-flow: row;
+  align-items: flex-end;
+}
+
+/* .delete-wrapper {
+  text-align: center;
+  width:min-content;
+} */
+
+.delete-btn {
+  height: 25px;
+  width: 25px;
+  padding: 1px 1px;
+  font-size: 1em;
+  line-height: 1em;
 }
 
 
@@ -68,8 +79,8 @@ h1 {
     cursor: pointer;
     opacity: 0.8;
     position: fixed;
-    bottom: 23px;
-    right: 28px;
+    bottom: 10px;
+    right: 10px;
     width: 280px;
   }
   

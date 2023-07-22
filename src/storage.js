@@ -1,5 +1,5 @@
 import { openForm, createTaskDiv } from './taskmaster'
-import { compareAsc, compareDesc, format, parse } from 'date-fns'
+import { compareAsc, compareDesc, format } from 'date-fns'
 
 function getCurrentID() {
     if (!window.localStorage.getItem('currentID')) window.localStorage.setItem('currentID', 0);
@@ -20,9 +20,6 @@ export function getTaskDict() {
 }
 
 let taskDict = getTaskDict()
-// for (let [k,v] of Object.entries(taskDict)) {
-//     console.log(`${k}: ${v}`)
-// }
 
 function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
     taskDict[currentID] = {
@@ -38,21 +35,17 @@ export function addTask(DOMform) {
         let title = document.getElementById('new-title')
         let details = document.getElementById('new-details')
         let dueDate = document.getElementById('new-due-date')
-        const dateobj = new Date(dueDate.valueAsDate)
-        console.log(dueDate.value)
-
         const currentID = +getCurrentID()
         if (!title.value) {
             alert('Title section of form must be filled.');
             openForm();
         } else {
-            const entryTimestamp = new Date()
-            addTaskDict(currentID, title.value,details.value, entryTimestamp.toString(), dueDate.value)
-            // parse(dueDate.valueAsDate, 'YYYY/MM/DD', new Date())
-            // createTaskDiv(currentID, title, details, entryTimestamp, )
-            title.value = ""
-            details.value = ""
-            dueDate = new Date()
+            const entryTimeStamp = new Date()
+            addTaskDict(currentID, title.value, details.value, entryTimeStamp.toString(), dueDate.value)
+            document.getElementById('container').appendChild(createTaskDiv(currentID, title.value, details.value, entryTimeStamp, dueDate.value))
+            title.value = "";
+            details.value = "";
+            dueDate.value = "";
         };
     });
 };
