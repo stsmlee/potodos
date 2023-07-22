@@ -1,7 +1,10 @@
 * {box-sizing: border-box}
 
+* {font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+
 body {
     margin: 0;
+    background-color: rgb(226, 226, 226);
 }
 
 h1 {
@@ -16,15 +19,18 @@ h1 {
 
 #container {
     background-color: rgb(226, 226, 226);
-    min-height: 100vh;
+    /* min-height: 100vh; */
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     align-items: stretch;
+    /* align-items: flex-start; */
     justify-content: flex-start;
-    align-content: stretch;
     gap: 10px;
+    align-content: stretch;
+    /* align-content: flex-start; */
     padding: 0px 50px;
+    min-height: max-content;
 }
 
 .task {
@@ -32,19 +38,21 @@ h1 {
     flex-direction: column;
     min-height: 200px;
     min-width: 200px;
-    max-height: 400px;
-    max-width: 300px;
+    max-height: 350px;
+    max-width: 350px;
     background-color: pink;
-    flex: 1;
+    flex: 1 1 auto;
     padding: 10px 10px;
 }
 
 .title {
     font-size: 1.5em;
+    padding-bottom: 2px;
 }
 
 .details {
     line-height: 1.5em;
+    overflow: scroll;
 }
 
 .dates-wrapper{
@@ -54,6 +62,7 @@ h1 {
   margin-top: auto;
   flex-flow: row;
   align-items: flex-end;
+  padding-top: 2px;
 }
 
 .delete-btn {
@@ -69,7 +78,7 @@ h1 {
 }
 
 
-/* Button used to open the contact form - fixed at the bottom of the page */
+/* Button used to open the form - fixed at the bottom of the page */
 #open-button {
     background-color: #555;
     color: white;
@@ -123,7 +132,7 @@ h1 {
     outline: none;
   }
   
-  /* Set a style for the submit/login button */
+  /* Set a style for the submit button */
   .form-container .btn {
     background-color: #04AA6D;
     color: white;

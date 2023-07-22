@@ -10,14 +10,12 @@ let taskDict = getTaskDict()
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
 
-// for (let [k,v] of Object.entries(taskDict)) {
-//     console.log(`${k}: ${v}`)
-// }
+
 function loadTaskDict() {
     Object.entries(taskDict).forEach(([id,value]) => {
         container.appendChild(createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate))
     });
-}
+};
 
 loadTaskDict()
 
