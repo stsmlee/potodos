@@ -63,6 +63,17 @@ h1 {
   padding-top: 2px;
 }
 
+.button-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.buttons:active{
+  box-shadow: 1px 1px 2px #6a6968;
+  transform: translateY(1px);
+}
+
 .delete-btn {
   display: flex;
   align-items: center;
@@ -72,6 +83,23 @@ h1 {
   padding: 1px 1px;
   font-size: 1em;
   line-height: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 30px;
+  padding: 1px 1px;
+  font-size: 1em;
+  line-height: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .dates {

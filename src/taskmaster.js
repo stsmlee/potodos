@@ -16,21 +16,39 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     details.textContent = description
     title.classList.add('title');
     title.textContent = name;
-    dates.classList.add('dates')
-    entryTimeStamp.textContent = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
-    if (due) dueDate.textContent ='due on: ' + due;
     task.appendChild(title);
     task.appendChild(details);
-
-    const deleteBtn = document.createElement('button')
-    deleteBtn.type = 'button'
-    deleteBtn.innerHTML = '&#128465;'
-    deleteBtn.className = 'delete-btn'
-    deleteBtn.id = taskid
-    deleteBtn.onclick = deleteTask
-    datesWrapper.appendChild(deleteBtn)
+    dates.classList.add('dates');
+    entryTimeStamp.textContent = 'entered: ' + format(Date.parse(entryTS), 'yyyy-MM-dd');
+    if (due) dueDate.textContent ='due on: ' + due;
     dates.appendChild(entryTimeStamp);
     if (dueDate) dates.appendChild(dueDate);
+
+    const buttonWrapper = document.createElement('span')
+    buttonWrapper.className = 'button-wrapper'
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.innerHTML = '&#128465;';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.classList.add('buttons')
+    deleteBtn.id = taskid;
+    deleteBtn.onclick = deleteTask;
+    buttonWrapper.appendChild(deleteBtn)
+
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.id = taskid;
+    editBtn.className = 'edit-button';
+    editBtn.classList.add('buttons')
+    editBtn.innerText = 'edit'
+    buttonWrapper.appendChild(editBtn)
+    datesWrapper.appendChild(buttonWrapper)
+
+
+
+
+
     datesWrapper.appendChild(dates);
     task.appendChild(datesWrapper)
 
