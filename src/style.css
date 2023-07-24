@@ -106,7 +106,6 @@ h1 {
   text-align: right;
 }
 
-
 /* Button used to open the form - fixed at the bottom of the page */
 #open-button {
     background-color: #555;
@@ -164,13 +163,12 @@ h1 {
     cursor: pointer;
   }
   
-  /* When the inputs get focus, do something */
   .form-container input[type=text]:focus {
     background-color: #ddd;
     outline: none;
   }
   
-  /* Set a style for the submit button */
+  /* submit button */
   .form-container .btn {
     background-color: #04AA6D;
     color: white;
@@ -182,12 +180,12 @@ h1 {
     opacity: 0.8;
   }
   
-  /* Add a red background color to the cancel button */
+  /* red background color to the cancel button */
   .form-container .close-btn {
     background-color: red;
   }
   
-  /* Add some hover effects to buttons */
+  /* hover effects to buttons */
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
