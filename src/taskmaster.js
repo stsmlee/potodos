@@ -1,5 +1,5 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
-import { deleteTask } from './storage';
+import { deleteTask, editTask } from './storage';
 
 export function createTaskDiv(taskid, name, description, entryTS, due) {
     const task = document.createElement('div');
@@ -42,12 +42,9 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     editBtn.className = 'edit-button';
     editBtn.classList.add('buttons')
     editBtn.innerText = 'edit'
+    editBtn.onclick = editTask
     buttonWrapper.appendChild(editBtn)
     datesWrapper.appendChild(buttonWrapper)
-
-
-
-
 
     datesWrapper.appendChild(dates);
     task.appendChild(datesWrapper)
