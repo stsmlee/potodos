@@ -64,12 +64,14 @@ h1 {
 }
 
 .delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 25px;
   width: 25px;
   padding: 1px 1px;
   font-size: 1em;
   line-height: 1em;
-  text-align: center;
 }
 
 .dates {

@@ -1,5 +1,6 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
 import { deleteTask } from './storage';
+
 export function createTaskDiv(taskid, name, description, entryTS, due) {
     const task = document.createElement('div');
     task.id = 'div' + taskid;
