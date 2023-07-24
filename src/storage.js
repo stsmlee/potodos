@@ -156,9 +156,12 @@ function listenForEdits(subBtn) {
 };
 
 export function settingMenu() {
+    const menuButtonWrapper = document.createElement('span')
     const menuButton = document.createElement('button')
     menuButton.type = 'button'
-    menuButton.id = 'menu-button'
+    menuButtonWrapper.id = 'menu-button-wrapper'
     menuButton.innerHTML = '&#9881;'
-    return menuButton;
+    menuButton.id = 'menu-button'
+    menuButtonWrapper.appendChild(menuButton)
+    return menuButtonWrapper;
   }
