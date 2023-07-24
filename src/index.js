@@ -1,5 +1,5 @@
 import { compareAsc, compareDesc, format, intervalToDuration } from 'date-fns'
-import { createTaskDiv, customize, newTaskForm } from './taskmaster'
+import { createTaskDiv, newTaskForm } from './taskmaster'
 import { getTaskDict, addTask, settingMenu } from './storage'
 import './style.css'
 
@@ -19,7 +19,6 @@ function loadTaskDict() {
         if (value.dueDate) {
             let [year, month, day] = value.dueDate.split('-');
             let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
-            // console.log(timeLeft)
             if (Math.min(Object.values(timeLeft)) < 0) task.classList.add('overdue');
             else if (timeLeft.years == 0 && timeLeft.months == 0) {
                 if (timeLeft.days == 0) task.classList.add('overdue');
@@ -35,7 +34,6 @@ loadTaskDict()
 document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
-
 const taskForm = document.getElementById('new-task-div')
 addTask(taskForm)
 
