@@ -1,11 +1,14 @@
 import { compareAsc, compareDesc, format, intervalToDuration } from 'date-fns'
-import { createTaskDiv, newTaskForm } from './taskmaster'
+import { createTaskDiv, customize, newTaskForm } from './taskmaster'
 import { getTaskDict, addTask } from './storage'
 import './style.css'
 
 // localStorage.clear()
 let taskDict = getTaskDict()
 // console.log(taskDict)
+
+const header = document.getElementById('header')
+header.appendChild(customize())
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')

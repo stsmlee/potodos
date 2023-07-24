@@ -133,8 +133,12 @@ export function newTaskForm() {
   return newTaskDiv;
 };
 
-
-
-
+export function customize() {
+  const menuButton = document.createElement('button')
+  menuButton.type = 'button'
+  menuButton.id = 'menu-button'
+  menuButton.innerHTML = '&#9881;'
+  return menuButton;
+}
 
 

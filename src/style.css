@@ -115,6 +115,28 @@ h1 {
   text-align: right;
 }
 
+#menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  padding: 1px 1px;
+  font-size: .8em;
+  line-height: .9em;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  position:fixed;
+  left: 10px;
+  top: 10px;
+}
+
+#menu-button:active {
+  transform: translateY(1px);
+}
+
+
 /* Button used to open the form - fixed at the bottom of the page */
 #open-button {
   background-color: #555;
