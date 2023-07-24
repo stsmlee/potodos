@@ -10,7 +10,6 @@ let taskDict = getTaskDict()
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
 
-
 function loadTaskDict() {
     Object.entries(taskDict).forEach(([id,value]) => {
         let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
