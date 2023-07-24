@@ -1,5 +1,5 @@
 import { openForm, createTaskDiv, closeForm } from './taskmaster'
-import { compareAsc, compareDesc, format, min } from 'date-fns'
+import { compareAsc, compareDesc, format, min, parseISO } from 'date-fns'
 
 function getCurrentID() {
     if (!window.localStorage.getItem('currentID')) window.localStorage.setItem('currentID', 0);
@@ -107,7 +107,7 @@ export function editTask(e) {
     editDueDateLabel.htmlFor = 'new-due-date';
     if (taskDict[taskid].dueDate) {
         editDueDate.value = taskDict[taskid].dueDate;
-        editDueDate.min = min([taskDict[taskid].dueDate, format(new Date(), 'yyyy-MM-dd')]);
+        editDueDate.min = format(min([parseISO(taskDict[taskid].dueDate), new Date()]), 'yyyy-MM-dd');
     } else editDueDate.min = format(new Date(), 'yyyy-MM-dd');
 
     const submitBtn = document.createElement('button');
