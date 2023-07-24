@@ -1,5 +1,5 @@
 import { openForm, createTaskDiv, closeForm } from './taskmaster'
-import { compareAsc, compareDesc, format } from 'date-fns'
+import { compareAsc, compareDesc, format, min } from 'date-fns'
 
 function getCurrentID() {
     if (!window.localStorage.getItem('currentID')) window.localStorage.setItem('currentID', 0);
@@ -67,7 +67,6 @@ export function editTask(e) {
 
     const editTaskDiv = document.createElement('div');
     editTaskDiv.id = 'edit-div' + taskid;
-    // container.appendChild(editTaskDiv)
     ogTask.replaceWith(editTaskDiv)
 
     const editTaskForm = document.createElement('form');
@@ -108,7 +107,7 @@ export function editTask(e) {
     editDueDateLabel.htmlFor = 'new-due-date';
     if (taskDict[taskid].dueDate) {
         editDueDate.value = taskDict[taskid].dueDate;
-        editDueDate.min = taskDict[taskid].dueDate;
+        editDueDate.min = min(taskDict[taskid].dueDate, format(new Date(), 'yyyy-MM-dd'));
     } else editDueDate.min = format(new Date(), 'yyyy-MM-dd');
 
     const submitBtn = document.createElement('button');
@@ -155,11 +154,3 @@ function listenForEdits(subBtn) {
         };
     });
 };
-
-// function openEdit() {
-//     document.getElementById("edit-task-div").style.display = "block";
-//   };
-  
-// function closeEdit() {
-//     document.getElementById("edit-task-div").style.display = "none";
-// };
