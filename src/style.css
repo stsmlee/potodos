@@ -120,6 +120,10 @@ h1 {
     right: 10px;
     width: 280px;
   }
+
+#open-button:active {
+  transform: translateY(1px);
+}
   
   /* The popup form - hidden by default */
   #new-task-div {
@@ -153,6 +157,11 @@ h1 {
     margin: 5px 0 30px 0;
     border: none;
     background: #f1f1f1;
+    cursor: pointer;
+  }
+
+  .form-container [type=date]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
   }
   
   /* When the inputs get focus, do something */
@@ -182,4 +191,9 @@ h1 {
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
+
+  .form-container .btn:active {
+    transform: translateY(1px);
+  }
+
 
