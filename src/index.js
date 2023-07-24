@@ -20,10 +20,10 @@ function loadTaskDict() {
             let [year, month, day] = value.dueDate.split('-');
             let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
             // console.log(timeLeft)
-            if (Math.min(Object.values(timeLeft)) < 0) task.classList.add('red');
+            if (Math.min(Object.values(timeLeft)) < 0) task.classList.add('overdue');
             else if (timeLeft.years == 0 && timeLeft.months == 0) {
-                if (timeLeft.days == 0) task.classList.add('red');
-                else if (timeLeft.days <= 7) task.classList.add('yellow');
+                if (timeLeft.days == 0) task.classList.add('overdue');
+                else if (timeLeft.days <= 7) task.classList.add('very-soon');
             };
         };
         container.appendChild(task)

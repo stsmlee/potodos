@@ -44,11 +44,11 @@ h1 {
   border-radius: 5px;
 }
 
-.yellow {
+.very-soon {
   background-color:  rgb(255 241 156);
 }
 
-.red {
+.overdue {
   background-color: rgb(255 121 121);
 }
 
