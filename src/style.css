@@ -144,14 +144,15 @@ h1 {
 #open-button {
   background-color: #555;
   color: white;
-  padding: 16px 20px;
+  padding: 14px 18px;
   border: none;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.7;
   position: fixed;
   bottom: 10px;
   right: 10px;
   width: 280px;
+  font-size: 1em;
 }
 
 #open-button:active {
