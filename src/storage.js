@@ -154,3 +154,11 @@ function listenForEdits(subBtn) {
         };
     });
 };
+
+export function settingMenu() {
+    const menuButton = document.createElement('button')
+    menuButton.type = 'button'
+    menuButton.id = 'menu-button'
+    menuButton.innerHTML = '&#9881;'
+    return menuButton;
+  }
