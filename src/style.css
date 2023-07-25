@@ -148,7 +148,7 @@ h1 {
   display: none;
   z-index: 9;
   border: 3px solid #f1f1f1;
-  width: 300px;
+  /* width: 300px; */
 }
 
 .settings-form {
