@@ -157,10 +157,21 @@ export function settingsMenu() {
   // sortByEntry.value = 'sortByEntry'
   // sortByEntry.textContent = 'sortByEntry'
   // selectSort.appendChild(sortByEntry)
+  const options = {'Entry Asc':'Entry date ascending', 'Entry Dsc': 'Entry date descending', 
+        'Due Asc':'Due date ascending', 'Due Dsc':'Due date descending', 
+        'Alpha Asc':'Alphabetical ascending', 'Alpha Dsc':'Alphabetical descending'}
+
+  Object.entries(options).forEach(([option, description]) => {
+    console.log(option, description)
+    const opt = document.createElement('option');
+    opt.value = option;
+    opt.textContent = description;
+    selectSort.appendChild(opt);
+  });
 
   settingsForm.appendChild(selectSortLabel)
   settingsForm.appendChild(selectSort)
-  
+
   settingsDiv.appendChild(settingsForm)
 
   // container.appendChild(settingsDiv)
