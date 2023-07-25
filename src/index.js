@@ -1,4 +1,4 @@
-import { compareAsc, compareDesc, format, intervalToDuration } from 'date-fns'
+import { compareAsc, compareDesc, format, intervalToDuration, isAfter, isBefore } from 'date-fns'
 import { createTaskDiv, newTaskForm } from './taskmaster'
 import { getTaskDict, addTask, settingMenu } from './storage'
 import './style.css'
@@ -18,12 +18,15 @@ function loadTaskDict() {
         let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
         if (value.dueDate) {
             let [year, month, day] = value.dueDate.split('-');
-            let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
-            if (Math.min(Object.values(timeLeft)) < 0) task.classList.add('overdue');
-            else if (timeLeft.years == 0 && timeLeft.months == 0) {
-                if (timeLeft.days == 0) task.classList.add('overdue');
-                else if (timeLeft.days <= 7) task.classList.add('very-soon');
-            };
+            if (isBefore(new Date(year, month-1, day), new Date())) {
+                task.classList.add('overdue');
+            } else {
+                let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
+                if (timeLeft.years == 0 && timeLeft.months == 0) {
+                    if (timeLeft.days == 0) task.classList.add('overdue');
+                    else if (timeLeft.days <= 7) task.classList.add('very-soon');
+                };
+            }
         };
         container.appendChild(task)
     });
