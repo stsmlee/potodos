@@ -148,7 +148,7 @@ function listenForEdits(subBtn) {
         } else {
             taskDict[taskid].title = title.value
             taskDict[taskid].details = details.value
-            taskDict[taskid].value = dueDate.value
+            taskDict[taskid].dueDate = dueDate.value
             let updatedTask = createTaskDiv(taskid, title.value, details.value, taskDict[taskid].entryTimeStamp, dueDate.value)
             document.getElementById('edit-div'+taskid).replaceWith(updatedTask)
             window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
