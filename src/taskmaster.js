@@ -149,6 +149,12 @@ export function settingsMenu() {
   const settingsForm = document.createElement('form')
   settingsDiv.id = 'settings-div'
   settingsForm.className = 'settings-form'
+  const selectSort = document.createElement('select')
+  const selectSortLabel = document.createElement('label')
+  selectSortLabel.htmlFor = selectSort
+  selectSortLabel.textContent = 'Select sorting order'
+
+
   settingsDiv.appendChild(settingsForm)
 
   return settingsDiv;
