@@ -1,11 +1,10 @@
 import { compareAsc, compareDesc, format, intervalToDuration, isAfter, isBefore } from 'date-fns'
-import { createTaskDiv, newTaskForm } from './taskmaster'
-import { getTaskDict, addTask, settingMenu } from './storage'
+import { createTaskDiv, newTaskForm, settingMenu } from './taskmaster'
+import { getTaskDict, addTask } from './storage'
 import './style.css'
 
 // localStorage.clear()
 let taskDict = getTaskDict()
-// console.log(taskDict)
 
 const header = document.getElementById('header')
 header.appendChild(settingMenu())

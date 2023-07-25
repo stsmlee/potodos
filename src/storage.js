@@ -59,7 +59,7 @@ export function deleteTask(e) {
 };
 
 export function editTask(e) {
-    const container = document.getElementById('container')
+    // const container = document.getElementById('container')
     const taskid = e.target.id;
     const divid = 'div' + taskid
     const ogTask = document.getElementById(divid)
@@ -156,13 +156,3 @@ function listenForEdits(subBtn) {
     });
 };
 
-export function settingMenu() {
-    const menuButtonWrapper = document.createElement('span')
-    const menuButton = document.createElement('button')
-    menuButton.type = 'button'
-    menuButtonWrapper.id = 'menu-button-wrapper'
-    menuButton.innerHTML = '&#9881;'
-    menuButton.id = 'menu-button'
-    menuButtonWrapper.appendChild(menuButton)
-    return menuButtonWrapper;
-  }

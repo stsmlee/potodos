@@ -133,6 +133,13 @@ export function newTaskForm() {
   return newTaskDiv;
 };
 
-
-
-
+export function settingMenu() {
+  const menuButtonWrapper = document.createElement('span')
+  const menuButton = document.createElement('button')
+  menuButton.type = 'button'
+  menuButtonWrapper.id = 'menu-button-wrapper'
+  menuButton.innerHTML = '&#9881;'
+  menuButton.id = 'menu-button'
+  menuButtonWrapper.appendChild(menuButton)
+  return menuButtonWrapper;
+};
