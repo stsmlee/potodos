@@ -142,8 +142,8 @@ export function settingsMenu() {
   menuButton.id = 'menu-button'
   menuButton.onclick = openMenu
   menuButtonWrapper.appendChild(menuButton)
-  const header = document.getElementById('header')
-  header.appendChild(menuButtonWrapper)
+  // const container = document.getElementById('container')
+  container.appendChild(menuButtonWrapper)
 
   const settingsDiv = document.createElement('div')
   const settingsForm = document.createElement('form')
@@ -154,10 +154,11 @@ export function settingsMenu() {
   selectSortLabel.htmlFor = selectSort
   selectSortLabel.textContent = 'Select sorting order'
 
-
   settingsForm.appendChild(selectSortLabel)
   settingsForm.appendChild(selectSort)
   settingsDiv.appendChild(settingsForm)
+
+  // container.appendChild(settingsDiv)
 
   return settingsDiv;
 };

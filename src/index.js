@@ -6,11 +6,14 @@ import './style.css'
 // localStorage.clear()
 let taskDict = getTaskDict()
 
-const header = document.getElementById('header')
-header.appendChild(settingsMenu())
+// const header = document.getElementById('header')
+
 
 const container = document.createElement('div')
-container.setAttribute('id', 'container')
+container.id = 'container'
+// container.setAttribute('id', 'container')
+
+
 
 function loadTaskDict() {
     Object.entries(taskDict).forEach(([id,value]) => {
@@ -34,7 +37,7 @@ function loadTaskDict() {
 loadTaskDict()
 
 document.body.appendChild(container)
-
+container.appendChild(settingsMenu())
 container.appendChild(newTaskForm())
 const taskForm = document.getElementById('new-task-div')
 addTaskListener(taskForm)
