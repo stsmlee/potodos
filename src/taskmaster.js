@@ -142,7 +142,7 @@ export function settingsMenu() {
   menuButton.id = 'menu-button'
   menuButton.onclick = openMenu
   menuButtonWrapper.appendChild(menuButton)
-  // const container = document.getElementById('container')
+
   container.appendChild(menuButtonWrapper)
 
   const settingsDiv = document.createElement('div')
@@ -153,9 +153,14 @@ export function settingsMenu() {
   const selectSortLabel = document.createElement('label')
   selectSortLabel.htmlFor = selectSort
   selectSortLabel.textContent = 'Select sorting order'
+  // const sortByEntry = document.createElement('option')
+  // sortByEntry.value = 'sortByEntry'
+  // sortByEntry.textContent = 'sortByEntry'
+  // selectSort.appendChild(sortByEntry)
 
   settingsForm.appendChild(selectSortLabel)
   settingsForm.appendChild(selectSort)
+  
   settingsDiv.appendChild(settingsForm)
 
   // container.appendChild(settingsDiv)
