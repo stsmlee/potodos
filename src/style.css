@@ -140,6 +140,22 @@ h1 {
   transform: translateY(1px);
 }
 
+#settings-div {
+  position: fixed;
+  left: 8px;
+  top: 9px;
+  display: none;
+  z-index: 9;
+  border: 3px solid #f1f1f1;
+  width: 300px;
+}
+
+.settings-form {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
 
 /* Button used to open the form - fixed at the bottom of the page */
 #open-button {

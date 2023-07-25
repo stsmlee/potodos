@@ -29,7 +29,7 @@ function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
     window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
 }
 
-export function addTask(DOMform) {
+export function addTaskListener(DOMform) {
     DOMform.addEventListener("submit", (e) => {
         e.preventDefault();
         let title = document.getElementById('new-title')

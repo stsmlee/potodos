@@ -133,13 +133,27 @@ export function newTaskForm() {
   return newTaskDiv;
 };
 
-export function settingMenu() {
+export function settingsMenu() {
   const menuButtonWrapper = document.createElement('span')
   const menuButton = document.createElement('button')
   menuButton.type = 'button'
   menuButtonWrapper.id = 'menu-button-wrapper'
   menuButton.innerHTML = '&#9881;'
   menuButton.id = 'menu-button'
+  menuButton.onclick = openMenu
   menuButtonWrapper.appendChild(menuButton)
-  return menuButtonWrapper;
+  const header = document.getElementById('header')
+  header.appendChild(menuButtonWrapper)
+
+  const settingsDiv = document.createElement('div')
+  const settingsForm = document.createElement('form')
+  settingsDiv.id = 'settings-div'
+  settingsForm.className = 'settings-form'
+  settingsDiv.appendChild(settingsForm)
+
+  return settingsDiv;
 };
+
+function openMenu() {
+  document.getElementById('settings-div').style.display = 'block'
+}

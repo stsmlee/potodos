@@ -1,13 +1,13 @@
 import { compareAsc, compareDesc, format, intervalToDuration, isAfter, isBefore } from 'date-fns'
-import { createTaskDiv, newTaskForm, settingMenu } from './taskmaster'
-import { getTaskDict, addTask } from './storage'
+import { createTaskDiv, newTaskForm, settingsMenu } from './taskmaster'
+import { getTaskDict, addTaskListener } from './storage'
 import './style.css'
 
 // localStorage.clear()
 let taskDict = getTaskDict()
 
 const header = document.getElementById('header')
-header.appendChild(settingMenu())
+header.appendChild(settingsMenu())
 
 const container = document.createElement('div')
 container.setAttribute('id', 'container')
@@ -37,7 +37,7 @@ document.body.appendChild(container)
 
 container.appendChild(newTaskForm())
 const taskForm = document.getElementById('new-task-div')
-addTask(taskForm)
+addTaskListener(taskForm)
 
 
 // const dates = [
