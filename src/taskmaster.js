@@ -155,6 +155,8 @@ export function settingsMenu() {
   selectSortLabel.textContent = 'Select sorting order'
 
 
+  settingsForm.appendChild(selectSortLabel)
+  settingsForm.appendChild(selectSort)
   settingsDiv.appendChild(settingsForm)
 
   return settingsDiv;
