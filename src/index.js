@@ -11,9 +11,6 @@ let taskDict = getTaskDict()
 
 const container = document.createElement('div')
 container.id = 'container'
-// container.setAttribute('id', 'container')
-
-
 
 function loadTaskDict() {
     Object.entries(taskDict).forEach(([id,value]) => {
@@ -43,17 +40,3 @@ const taskForm = document.getElementById('new-task-div')
 addTaskListener(taskForm)
 
 
-// const dates = [
-//     { timestamp: new Date(1995, 6, 2),
-//       task: 'eat that potato'
-//     }, 
-//     { timestamp: new Date(1987, 1, 11),
-//       task: 'build a potato'
-//     }, 
-//     { timestamp: new Date(1989, 6, 10),
-//       task: 'cook the potato'
-//     }
-//   ]
-// dates.sort(compareAsc)
-// dates.sort((a, b) => compareAsc(a.timestamp, b.timestamp))
-// export {dates}
