@@ -119,8 +119,7 @@ export function editTask(e) {
     const cancelBtn = document.createElement('button');
     cancelBtn.type = 'button';
     cancelBtn.textContent = 'Cancel';
-    cancelBtn.classList.add('btn');
-    cancelBtn.classList.add('close-btn');
+    cancelBtn.classList.add('btn', 'close-btn');
     cancelBtn.onclick = () => editTaskDiv.replaceWith(ogTask)
 
     editTaskForm.appendChild(editTitleLabel);

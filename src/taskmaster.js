@@ -1,5 +1,5 @@
 import { compareAsc, compareDesc, format } from 'date-fns'
-import { deleteTask, editTask } from './storage';
+import { deleteTask, editTask, getTaskDict } from './storage';
 
 export function createTaskDiv(taskid, name, description, entryTS, due) {
     const task = document.createElement('div');
@@ -30,8 +30,7 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.innerHTML = '&#128465;';
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.classList.add('buttons')
+    deleteBtn.classList.add('delete-btn', 'buttons')
     deleteBtn.id = taskid;
     deleteBtn.onclick = deleteTask;
     buttonWrapper.appendChild(deleteBtn)
@@ -39,8 +38,7 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
     editBtn.id = taskid;
-    editBtn.className = 'edit-button';
-    editBtn.classList.add('buttons')
+    editBtn.classList.add('edit-button', 'buttons')
     editBtn.innerText = 'edit'
     editBtn.onclick = editTask
     buttonWrapper.appendChild(editBtn)
@@ -150,6 +148,7 @@ export function settingsMenu() {
   settingsDiv.id = 'settings-div'
   settingsForm.className = 'settings-form'
   const selectSort = document.createElement('select')
+  selectSort.id = 'select-sort'
   const selectSortLabel = document.createElement('label')
   selectSortLabel.htmlFor = selectSort
   selectSortLabel.textContent = 'Select sorting order'
@@ -157,24 +156,29 @@ export function settingsMenu() {
         'Due Asc':'Due date ascending', 'Due Dsc':'Due date descending', 
         'Alpha Asc':'Alphabetical ascending', 'Alpha Dsc':'Alphabetical descending'}
   Object.entries(options).forEach(([option, description]) => {
-    console.log(option, description)
+    // console.log(option, description)
     const opt = document.createElement('option');
     opt.value = option;
     opt.textContent = description;
     selectSort.appendChild(opt);
   });
-  const saveSort = document.createElement('button')
-  saveSort.className = 'btn'
-  saveSort.type = 'button'
-  saveSort.textContent = 'Save changes'
+  const saveChanges = document.createElement('button')
+  saveChanges.className = 'btn'
+  saveChanges.type = 'submit'
+  saveChanges.textContent = 'Save changes'
+  saveChanges.onclick = closeMenu
+  const cancelBtn = document.createElement('input')
+  cancelBtn.classList.add('btn','reset-btn')
+  cancelBtn.type = 'reset'
+  cancelBtn.textContent = 'Cancel'
+  cancelBtn.onclick = closeMenu
 
   settingsForm.appendChild(selectSortLabel)
   settingsForm.appendChild(selectSort)
-  settingsForm.appendChild(saveSort)
-
+  settingsForm.appendChild(saveChanges)
+  settingsForm.appendChild(cancelBtn)
   settingsDiv.appendChild(settingsForm)
-
-  // container.appendChild(settingsDiv)
+  addSettingsListener(settingsForm)
 
   return settingsDiv;
 };
@@ -182,3 +186,41 @@ export function settingsMenu() {
 function openMenu() {
   document.getElementById('settings-div').style.display = 'block'
 }
+
+function closeMenu() {
+  document.getElementById('settings-div').style.display = 'none'
+}
+
+function addSettingsListener(DOMform) {
+  DOMform.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let sortChoice = document.getElementById('select-sort').value;
+      console.log(sortChoice)
+  });
+};
+
+
+// function loadTaskDict(sortChoice) {
+//   let taskDict = getTaskDict();
+//   let taskArr = Object.entries(taskDict)
+//   if (!sortChoice || sortChoice == 'Entry Asc') {
+//     Object.entries(taskDict).forEach(([id,value]) => {
+//       let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
+//       if (value.dueDate) {
+//           let [year, month, day] = value.dueDate.split('-');
+//           if (isBefore(new Date(year, month-1, day), new Date())) {
+//               task.classList.add('overdue');
+//           } else {
+//               let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
+//               if (timeLeft.years == 0 && timeLeft.months == 0) {
+//                   if (timeLeft.days == 0) task.classList.add('overdue');
+//                   else if (timeLeft.days <= 7) task.classList.add('very-soon');
+//               };
+//           }
+//       };
+//       container.appendChild(task)
+//     });
+//   }
+
+
+// };

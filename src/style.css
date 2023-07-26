@@ -190,6 +190,9 @@ h1 {
   transform: translateY(1px);
 }
 
+.settings-form .reset-btn {
+  background-color: red; 
+}
 
 /* Button used to open the form - fixed at the bottom of the page */
 #open-button {
