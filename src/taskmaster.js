@@ -153,14 +153,9 @@ export function settingsMenu() {
   const selectSortLabel = document.createElement('label')
   selectSortLabel.htmlFor = selectSort
   selectSortLabel.textContent = 'Select sorting order'
-  // const sortByEntry = document.createElement('option')
-  // sortByEntry.value = 'sortByEntry'
-  // sortByEntry.textContent = 'sortByEntry'
-  // selectSort.appendChild(sortByEntry)
   const options = {'Entry Asc':'Entry date ascending', 'Entry Dsc': 'Entry date descending', 
         'Due Asc':'Due date ascending', 'Due Dsc':'Due date descending', 
         'Alpha Asc':'Alphabetical ascending', 'Alpha Dsc':'Alphabetical descending'}
-
   Object.entries(options).forEach(([option, description]) => {
     console.log(option, description)
     const opt = document.createElement('option');
@@ -168,9 +163,14 @@ export function settingsMenu() {
     opt.textContent = description;
     selectSort.appendChild(opt);
   });
+  const saveSort = document.createElement('button')
+  saveSort.className = 'btn'
+  saveSort.type = 'button'
+  saveSort.textContent = 'Save changes'
 
   settingsForm.appendChild(selectSortLabel)
   settingsForm.appendChild(selectSort)
+  settingsForm.appendChild(saveSort)
 
   settingsDiv.appendChild(settingsForm)
 

@@ -135,9 +135,10 @@ h1 {
   font-size: 25px;
   border: none;
   background-color: transparent;
+  cursor: context-menu;
 }
 
-#menu-button:active {
+#menu-button-wrapper:active {
   transform: translateY(1px);
 }
 
@@ -152,26 +153,41 @@ h1 {
 }
 
 .settings-form {
-  max-width: 300px;
+  max-width: 250px;
   padding: 10px;
   background-color: white;
 }
 
-.settings-form label {
-  width: 100%;
-  display: block;
+/* .settings-form label {
   padding: 5px;
-  /* margin: 0px 0px; */
-  border: none;
-}
+} */
 
 .settings-form select {
   width: 100%;
   padding: 5px;
-  margin: 5px 0 15px 0;
+  margin: 10px 0 15px 0;
   border: none;
   background: #f1f1f1;
   cursor: pointer;
+}
+
+.settings-form .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.settings-form .btn:hover {
+  opacity: 1;
+}
+
+.settings-form .btn:active {
+  transform: translateY(1px);
 }
 
 
