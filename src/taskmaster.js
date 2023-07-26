@@ -179,7 +179,6 @@ export function settingsMenu() {
   settingsForm.appendChild(cancelBtn)
   settingsDiv.appendChild(settingsForm)
   addSettingsListener(settingsForm)
-  loadTaskDict()
 
   return settingsDiv;
 };
@@ -196,20 +195,19 @@ function addSettingsListener(DOMform) {
   DOMform.addEventListener("submit", (e) => {
       e.preventDefault();
       let sortChoice = document.getElementById('select-sort').value;
-      console.log(sortChoice)
+      // console.log(sortChoice)
+      clearTasks()
+      loadTaskDict(sortChoice)
   });
 };
 
-function loadTaskDict(sortChoice) {
+export function loadTaskDict(sortChoice) {
   let taskDict = getTaskDict();
   let taskArr = Object.entries(taskDict)
-  sortChoice = 'Alpha Dsc'
+  if (!sortChoice) sortChoice = 'Entry Asc'
   switch (sortChoice) {
     case 'Entry Dsc':
       taskArr.sort((a,b) => compareDesc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
-      break;
-    case 'Entry Asc':
-      taskArr.sort((a,b) => compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
       break;
     case 'Entry Asc':
       taskArr.sort((a,b) => compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
@@ -246,9 +244,8 @@ function loadTaskDict(sortChoice) {
         else return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
       })
       break;
-
   };
-  clearTasks()
+  // clearTasks()
   taskArr.forEach(([id,value]) => {
     let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
     if (value.dueDate) {
