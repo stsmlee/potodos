@@ -170,7 +170,7 @@ export function settingsMenu() {
   const cancelBtn = document.createElement('input')
   cancelBtn.classList.add('btn','reset-btn')
   cancelBtn.type = 'reset'
-  cancelBtn.textContent = 'Cancel'
+  cancelBtn.value = 'Cancel'
   cancelBtn.onclick = closeMenu
 
   settingsForm.appendChild(selectSortLabel)
