@@ -211,8 +211,32 @@ function addSettingsListener(DOMform) {
 
 export function loadTaskDict(sortChoice) {
   const taskDict = getTaskDict();
-  let taskArr = Object.entries(taskDict);
   if (!sortChoice) sortChoice = 'Entry Asc';
+  let taskArr = sortTasks(Object.entries(taskDict), sortChoice);
+  taskArr.forEach(([id,value]) => {
+    let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
+    if (value.dueDate) {
+        let [year, month, day] = value.dueDate.split('-');
+        if (isBefore(new Date(year, month-1, day), new Date())) {
+            task.classList.add('overdue');
+        } else {
+            let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
+            if (timeLeft.years == 0 && timeLeft.months == 0) {
+                if (timeLeft.days == 0) task.classList.add('overdue');
+                else if (timeLeft.days <= 7) task.classList.add('very-soon');
+            };
+        };
+    };
+    container.appendChild(task);
+  });
+};
+
+function clearTasks() {
+  let elements = document.querySelectorAll('.task')
+  elements.forEach((el)=>el.parentNode.removeChild(el))
+};
+
+function sortTasks(taskArr, sortChoice) {
   switch (sortChoice) {
     case 'EntryDsc':
       taskArr.sort((a,b) => compareDesc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
@@ -253,41 +277,5 @@ export function loadTaskDict(sortChoice) {
       })
       break;
   };
-  // clearTasks()
-  taskArr.forEach(([id,value]) => {
-    let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
-    if (value.dueDate) {
-        let [year, month, day] = value.dueDate.split('-');
-        if (isBefore(new Date(year, month-1, day), new Date())) {
-            task.classList.add('overdue');
-        } else {
-            let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
-            if (timeLeft.years == 0 && timeLeft.months == 0) {
-                if (timeLeft.days == 0) task.classList.add('overdue');
-                else if (timeLeft.days <= 7) task.classList.add('very-soon');
-            };
-        };
-    };
-    container.appendChild(task)
-  });
+  return taskArr;
 };
-
-function clearTasks() {
-  let elements = document.querySelectorAll('.task')
-  elements.forEach((el)=>el.parentNode.removeChild(el))
-};
-
-// const dates = [
-//     { timestamp: new Date(1995, 6, 2),
-//       task: 'eat that potato'
-//     }, 
-//     { timestamp: new Date(1987, 1, 11),
-//       task: 'build a potato'
-//     }, 
-//     { timestamp: new Date(1989, 6, 10),
-//       task: 'cook the potato'
-//     }
-//   ]
-// dates.sort(compareAsc)
-// dates.sort((a, b) => compareAsc(a.timestamp, b.timestamp))
-// export {dates}
