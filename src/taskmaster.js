@@ -131,7 +131,7 @@ export function newTaskForm() {
   return newTaskDiv;
 };
 
-export function settingsMenu() {
+export function settingsMenu(sortChoice) {
   const menuButtonWrapper = document.createElement('span')
   const menuButton = document.createElement('button')
   menuButton.type = 'button'
@@ -150,18 +150,20 @@ export function settingsMenu() {
   const selectSort = document.createElement('select')
   selectSort.id = 'select-sort'
   const selectSortLabel = document.createElement('label')
-  selectSortLabel.htmlFor = selectSort
+  selectSortLabel.htmlFor = 'select-sort'
   selectSortLabel.textContent = 'Select sorting order'
-  const options = {'Entry Asc':'Entry date ascending', 'Entry Dsc': 'Entry date descending', 
-        'Due Asc':'Due date ascending', 'Due Dsc':'Due date descending', 
-        'Alpha Asc':'Alphabetical ascending', 'Alpha Dsc':'Alphabetical descending'}
+  const options = {'EntryAsc':'Entry date ascending (default)', 'EntryDsc': 'Entry date descending', 
+        'DueAsc':'Due date ascending', 'DueDsc':'Due date descending', 
+        'AlphaAsc':'Alphabetical ascending', 'AlphaDsc':'Alphabetical descending'}
   Object.entries(options).forEach(([option, description]) => {
-    // console.log(option, description)
     const opt = document.createElement('option');
     opt.value = option;
+    opt.id = option;
     opt.textContent = description;
+    if (option == sortChoice) opt.setAttribute('selected', 'selected');
     selectSort.appendChild(opt);
   });
+  console.log(sortChoice)
   const saveChanges = document.createElement('button')
   saveChanges.className = 'btn'
   saveChanges.type = 'submit'
@@ -194,39 +196,41 @@ function closeMenu() {
 function addSettingsListener(DOMform) {
   DOMform.addEventListener("submit", (e) => {
       e.preventDefault();
-      let sortChoice = document.getElementById('select-sort').value;
-      // console.log(sortChoice)
+      const sortChoice = document.getElementById('select-sort').value;
+      const settingsDiv = document.getElementById('settings-div');
+      container.removeChild(settingsDiv)
+      container.appendChild(settingsMenu(sortChoice))
       clearTasks()
       loadTaskDict(sortChoice)
   });
 };
 
 export function loadTaskDict(sortChoice) {
-  let taskDict = getTaskDict();
-  let taskArr = Object.entries(taskDict)
-  if (!sortChoice) sortChoice = 'Entry Asc'
+  const taskDict = getTaskDict();
+  let taskArr = Object.entries(taskDict);
+  if (!sortChoice) sortChoice = 'Entry Asc';
   switch (sortChoice) {
-    case 'Entry Dsc':
+    case 'EntryDsc':
       taskArr.sort((a,b) => compareDesc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
       break;
-    case 'Entry Asc':
+    case 'EntryAsc':
       taskArr.sort((a,b) => compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp)))
       break;
-    case 'Due Asc':
+    case 'DueAsc':
       taskArr.sort(function(a,b) {
         if (a[1].dueDate && b[1].dueDate) return compareAsc(Date.parse(a[1].dueDate), Date.parse(b[1].dueDate));
         else if (!a[1].dueDate && !b[1].dueDate) return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp));
         else if (a[1].dueDate) return -1;
       });
       break;
-    case 'Due Dsc':
+    case 'DueDsc':
       taskArr.sort(function(a,b) {
         if (a[1].dueDate && b[1].dueDate) return compareDesc(Date.parse(a[1].dueDate), Date.parse(b[1].dueDate));
         else if (!a[1].dueDate && !b[1].dueDate) return compareDesc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
         else if (a[1].dueDate) return 1
       });
       break;
-    case 'Alpha Asc':
+    case 'AlphaAsc':
       taskArr.sort(function(a,b) {
         let a_title = a[1].title.toUpperCase();
         let b_title = b[1].title.toUpperCase();
@@ -235,7 +239,7 @@ export function loadTaskDict(sortChoice) {
         else return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
       })
       break;
-    case 'Alpha Dsc':
+    case 'AlphaDsc':
       taskArr.sort(function(a,b) {
         let a_title = a[1].title.toUpperCase();
         let b_title = b[1].title.toUpperCase();

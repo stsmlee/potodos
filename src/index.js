@@ -8,7 +8,6 @@ let taskDict = getTaskDict()
 
 // const header = document.getElementById('header')
 
-
 const container = document.createElement('div')
 container.id = 'container'
 
@@ -32,8 +31,8 @@ container.id = 'container'
 // };
 
 document.body.appendChild(container)
-loadTaskDict()
-container.appendChild(settingsMenu())
+loadTaskDict('EntryAsc')
+container.appendChild(settingsMenu('EntryAsc'))
 container.appendChild(newTaskForm())
 const taskForm = document.getElementById('new-task-div')
 addTaskListener(taskForm)
