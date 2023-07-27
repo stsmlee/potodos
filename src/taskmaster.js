@@ -13,7 +13,7 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     datesWrapper.className = 'dates-wrapper'
     task.classList.add('task');
     details.classList.add('details');
-    details.textContent = description
+    details.textContent = description;
     title.classList.add('title');
     title.textContent = name;
     task.appendChild(title);
@@ -32,12 +32,14 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     deleteBtn.innerHTML = '&#128465;';
     deleteBtn.classList.add('delete-btn', 'buttons')
     deleteBtn.id = taskid;
+    deleteBtn.title = 'Delete task'
     deleteBtn.onclick = deleteTask;
     buttonWrapper.appendChild(deleteBtn)
 
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
     editBtn.id = taskid;
+    editBtn.title = 'Edit task'
     editBtn.classList.add('edit-button', 'buttons')
     editBtn.innerText = 'edit'
     editBtn.onclick = editTask
@@ -81,6 +83,7 @@ export function newTaskForm() {
   newTitleLabel.textContent = 'Title';
   newTitleLabel.style.fontWeight = 'bold' ;
   newTitle.id = 'new-title';
+  newTitle.maxLength = 75;
   newTitleLabel.htmlFor = 'new-title'
   newTitle.required = 'true';
   newTitle.placeholder = "Enter title of your task (Required)";
@@ -89,6 +92,7 @@ export function newTaskForm() {
   const newDetailsLabel = document.createElement('label');
   newDetails.type = 'text';
   newDetails.name = 'new-details'
+  newDetails.maxLength = 1320;
   newDetailsLabel.textContent = 'Details';
   newDetailsLabel.style.fontWeight = 'bold';
   newDetails.id = 'new-details';
