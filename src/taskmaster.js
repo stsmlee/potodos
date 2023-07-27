@@ -209,9 +209,8 @@ function addSettingsListener(DOMform) {
   });
 };
 
-export function loadTaskDict(sortChoice) {
+export function loadTaskDict(sortChoice = 'Entry Asc') {
   const taskDict = getTaskDict();
-  if (!sortChoice) sortChoice = 'Entry Asc';
   let taskArr = sortTasks(Object.entries(taskDict), sortChoice);
   taskArr.forEach(([id,value]) => {
     let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
