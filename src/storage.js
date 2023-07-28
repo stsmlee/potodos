@@ -27,7 +27,7 @@ let taskDict = getTaskDict()
 
 function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
     taskDict[currentID] = {
-        'title': title, 'details': details, 'entryTimeStamp': entryTimeStamp, 'dueDate': dueDate
+        title, details, entryTimeStamp, dueDate
     };
     setCurrentID(currentID += 1)
     updateTaskDict()
