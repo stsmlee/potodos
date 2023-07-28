@@ -135,7 +135,7 @@ export function newTaskForm() {
   return newTaskDiv;
 };
 
-export function settingsMenu(sortChoice) {
+export function settingsMenu(sortChoice = 'Entry Asc') {
   const menuButtonWrapper = document.createElement('span')
   const menuButton = document.createElement('button')
   menuButton.type = 'button'

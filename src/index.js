@@ -31,8 +31,8 @@ container.id = 'container'
 // };
 
 document.body.appendChild(container)
-loadTaskDict('EntryAsc')
-container.appendChild(settingsMenu('EntryAsc'))
+loadTaskDict()
+container.appendChild(settingsMenu())
 container.appendChild(newTaskForm())
 const taskForm = document.getElementById('new-task-div')
 addTaskListener(taskForm)
