@@ -142,7 +142,7 @@ function listenForEdits(subBtn) {
         let title = document.getElementById('edit-title' + taskid)
         let details = document.getElementById('edit-details' + taskid)
         let dueDate = document.getElementById('edit-due-date' + taskid)
-        if (!title.value) {
+        if (title.value.length == 0) {
             alert('Title section of form must be filled.');
         } else {
             taskDict[taskid].title = title.value
