@@ -254,7 +254,7 @@ function sortTasks(taskArr, sortChoice) {
       taskArr.sort(function(a,b) {
         if (a[1].dueDate && b[1].dueDate) return compareDesc(Date.parse(a[1].dueDate), Date.parse(b[1].dueDate));
         else if (!a[1].dueDate && !b[1].dueDate) return compareDesc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
-        else if (a[1].dueDate) return 1
+        else if (a[1].dueDate) return 1;
       });
       break;
     case 'AlphaAsc':
@@ -263,7 +263,7 @@ function sortTasks(taskArr, sortChoice) {
         let b_title = b[1].title.toUpperCase();
         if (a_title > b_title) return 1;
         else if (a_title < b_title) return -1;
-        else return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
+        return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp));
       })
       break;
     case 'AlphaDsc':
@@ -272,7 +272,7 @@ function sortTasks(taskArr, sortChoice) {
         let b_title = b[1].title.toUpperCase();
         if (a_title > b_title) return -1;
         else if (a_title < b_title) return 1;
-        else return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp))
+        return compareAsc(Date.parse(a[1].entryTimeStamp), Date.parse(b[1].entryTimeStamp));
       })
       break;
   };
