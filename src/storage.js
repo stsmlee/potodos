@@ -25,7 +25,7 @@ function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
     taskDict[currentID] = {
         'title': title, 'details': details, 'entryTimeStamp': entryTimeStamp, 'dueDate': dueDate
     };
-    setCurrentID(++currentID)
+    setCurrentID(currentID += 1)
     window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
 }
 
