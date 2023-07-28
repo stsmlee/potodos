@@ -167,7 +167,6 @@ export function settingsMenu(sortChoice = 'Entry Asc') {
     if (option == sortChoice) opt.setAttribute('selected', 'selected');
     selectSort.appendChild(opt);
   });
-  console.log(sortChoice)
   const saveChanges = document.createElement('button')
   saveChanges.className = 'btn'
   saveChanges.type = 'submit'
@@ -204,35 +203,41 @@ function addSettingsListener(DOMform) {
       const settingsDiv = document.getElementById('settings-div');
       container.removeChild(settingsDiv)
       container.appendChild(settingsMenu(sortChoice))
-      clearTasks()
+      // clearTasks()
       loadTaskDict(sortChoice)
   });
 };
 
 export function loadTaskDict(sortChoice = 'Entry Asc') {
+  clearTasks()
   const taskDict = getTaskDict();
   let taskArr = sortTasks(Object.entries(taskDict), sortChoice);
   taskArr.forEach(([id,value]) => {
     let task = createTaskDiv(id, value.title, value.details, value.entryTimeStamp, value.dueDate)
-    if (value.dueDate) {
-        let [year, month, day] = value.dueDate.split('-');
-        if (isBefore(new Date(year, month-1, day), new Date())) {
-            task.classList.add('overdue');
-        } else {
-            let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
-            if (timeLeft.years == 0 && timeLeft.months == 0) {
-                if (timeLeft.days == 0) task.classList.add('overdue');
-                else if (timeLeft.days <= 7) task.classList.add('very-soon');
-            };
-        };
-    };
+    colourCode(task, value.dueDate);
     container.appendChild(task);
   });
 };
 
+export function colourCode(task, dueDate) {
+  if (!dueDate) return;
+  let [year, month, day] = dueDate.split('-');
+  if (isBefore(new Date(year, month-1, day), new Date())) {
+      task.classList.add('overdue');
+  } else {
+      let timeLeft = intervalToDuration({start: new Date(year, month-1, day), end: new Date()})
+      if (timeLeft.years == 0 && timeLeft.months == 0) {
+          if (timeLeft.days == 0) task.classList.add('overdue');
+          else if (timeLeft.days <= 7) task.classList.add('very-soon');
+      };
+  };
+};
+
 function clearTasks() {
-  let elements = document.querySelectorAll('.task')
-  elements.forEach((el)=>el.parentNode.removeChild(el))
+  let elements = document.querySelectorAll('.task');
+  elements.forEach((el)=>el.parentNode.removeChild(el));
+  const openEdits = document.querySelectorAll('.open-edit');
+  openEdits.forEach((ed)=>ed.parentNode.removeChild(ed));
 };
 
 function sortTasks(taskArr, sortChoice) {

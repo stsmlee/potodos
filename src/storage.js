@@ -1,4 +1,4 @@
-import { openForm, createTaskDiv, closeForm } from './taskmaster'
+import { openForm, createTaskDiv, colourCode, loadTaskDict } from './taskmaster'
 import { compareAsc, compareDesc, format, min, parseISO } from 'date-fns'
 
 function getCurrentID() {
@@ -19,6 +19,10 @@ export function getTaskDict() {
     return JSON.parse(window.localStorage.getItem('taskdict'));
 }
 
+function updateTaskDict() {
+    window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
+}
+
 let taskDict = getTaskDict()
 
 function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
@@ -26,7 +30,7 @@ function addTaskDict(currentID, title,details,entryTimeStamp,dueDate) {
         'title': title, 'details': details, 'entryTimeStamp': entryTimeStamp, 'dueDate': dueDate
     };
     setCurrentID(currentID += 1)
-    window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
+    updateTaskDict()
 }
 
 export function addTaskListener(DOMform) {
@@ -42,10 +46,13 @@ export function addTaskListener(DOMform) {
         } else {
             const entryTimeStamp = new Date()
             addTaskDict(currentID, title.value, details.value, entryTimeStamp.toString(), dueDate.value)
-            document.getElementById('container').appendChild(createTaskDiv(currentID, title.value, details.value, entryTimeStamp, dueDate.value))
+            const newTaskDiv = createTaskDiv(currentID, title.value, details.value, entryTimeStamp, dueDate.value)
+            document.getElementById('container').appendChild(newTaskDiv)
+            colourCode(newTaskDiv, dueDate.value)
             title.value = "";
             details.value = "";
             dueDate.value = "";
+            loadTaskDict(document.querySelector('#select-sort option:checked').value)
         };
     });
 };
@@ -55,18 +62,22 @@ export function deleteTask(e) {
     const taskid = e.target.id;
     delete taskDict[taskid];
     container.removeChild(document.getElementById('div'+taskid))
-    window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
+    updateTaskDict()
 };
 
 export function editTask(e) {
-    // const container = document.getElementById('container')
+    const openEdits = document.querySelectorAll('.open-edit');
+    if (openEdits.length > 0) {
+        alert('Please finish your other edit first')
+        return;
+    };
     const taskid = e.target.id;
     const divid = 'div' + taskid
     const ogTask = document.getElementById(divid)
     // const clone = ogTask.cloneNode(true)
-
     const editTaskDiv = document.createElement('div');
     editTaskDiv.id = 'edit-div' + taskid;
+    editTaskDiv.className = 'open-edit'
     ogTask.replaceWith(editTaskDiv)
 
     const editTaskForm = document.createElement('form');
@@ -148,9 +159,8 @@ function listenForEdits(subBtn) {
             taskDict[taskid].title = title.value
             taskDict[taskid].details = details.value
             taskDict[taskid].dueDate = dueDate.value
-            let updatedTask = createTaskDiv(taskid, title.value, details.value, taskDict[taskid].entryTimeStamp, dueDate.value)
-            document.getElementById('edit-div'+taskid).replaceWith(updatedTask)
-            window.localStorage.setItem('taskdict', JSON.stringify(taskDict))
+            updateTaskDict()
+            loadTaskDict(document.querySelector('#select-sort option:checked').value)
         };
     });
 };
