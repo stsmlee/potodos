@@ -36,7 +36,8 @@ h1 {
   flex-direction: column;
   min-height: 200px;
   min-width: 220px;
-  max-height: 350px;
+  /* max-height: 350px; */
+  max-height: 417px;
   max-width: 20%;
   background-color: rgb(206 248 164);
   flex: 1 1 auto;
@@ -106,13 +107,14 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 18px;
+  height: 23px;
   width: 30px;
   padding: 1px 1px;
   font-size: .8em;
   border: 1px solid black;
   border-radius: 5px;
   cursor: inherit;
+  line-height: 1em;
 }
 
 .no-edit {
