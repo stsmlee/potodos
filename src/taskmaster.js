@@ -54,10 +54,13 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
 
 export function openForm() {
   document.getElementById("new-task-div").style.display = "block";
+  // document.getElementById("container").classList.toggle("blurred")
 };
 
 export function closeForm() {
   document.getElementById("new-task-div").style.display = "none";
+  // document.getElementById("container").classList.toggle("blurred")
+
 };
 
 export function newTaskForm() {
@@ -155,7 +158,7 @@ export function settingsMenu(sortChoice = 'Entry Asc') {
   selectSort.id = 'select-sort'
   const selectSortLabel = document.createElement('label')
   selectSortLabel.htmlFor = 'select-sort'
-  selectSortLabel.textContent = 'Select sorting order'
+  selectSortLabel.textContent = 'Select sorting order' 
   const options = {'EntryAsc':'Entry date ascending (default)', 'EntryDsc': 'Entry date descending', 
         'DueAsc':'Due date ascending', 'DueDsc':'Due date descending', 
         'AlphaAsc':'Alphabetical ascending', 'AlphaDsc':'Alphabetical descending'}
