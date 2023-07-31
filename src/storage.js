@@ -117,7 +117,7 @@ export function editTask(e) {
     editDueDateLabel.textContent = 'Due date (Optional)';
     editDueDateLabel.style.fontWeight = 'bold';
     editDueDate.id = 'edit-due-date' + taskid;
-    editDueDateLabel.htmlFor = 'new-due-date' + taskid;
+    editDueDateLabel.htmlFor = 'edit-due-date' + taskid;
     if (taskDict[taskid].dueDate) {
         editDueDate.value = taskDict[taskid].dueDate;
         editDueDate.min = format(min([parseISO(taskDict[taskid].dueDate), new Date()]), 'yyyy-MM-dd');
