@@ -34,7 +34,6 @@ document.body.appendChild(container)
 loadTaskDict()
 container.appendChild(settingsMenu())
 container.appendChild(newTaskForm())
-// document.body.appendChild(newTaskForm())
 const taskForm = document.getElementById('new-task-div')
 addTaskListener(taskForm)
 

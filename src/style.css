@@ -17,11 +17,6 @@ h1 {
   background-color: rgb(243 243 243);
 }
 
-/* .blurred {
-  filter: blur(2px);
-  pointer-events: none;
-} */
-
 #container {
   background-color: rgb(243 243 243);
   /* min-height: 100vh; */

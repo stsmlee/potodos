@@ -62,13 +62,10 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
 
 export function openForm() {
   document.getElementById("new-task-div").style.display = "block";
-  // document.getElementById("container").classList.toggle("blurred")
 };
 
 export function closeForm() {
   document.getElementById("new-task-div").style.display = "none";
-  // document.getElementById("container").classList.toggle("blurred")
-
 };
 
 export function newTaskForm() {
