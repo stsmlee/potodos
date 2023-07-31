@@ -35,7 +35,8 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     deleteBtn.title = 'Delete task'
     deleteBtn.onclick = deleteTask;
     buttonWrapper.appendChild(deleteBtn)
-
+    const editWrapper = document.createElement('span')
+    editWrapper.className = 'edit-wrapper'
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
     editBtn.id = taskid;
@@ -43,7 +44,14 @@ export function createTaskDiv(taskid, name, description, entryTS, due) {
     editBtn.classList.add('edit-button', 'buttons')
     editBtn.innerText = 'edit'
     editBtn.onclick = editTask
-    buttonWrapper.appendChild(editBtn)
+    const editToolTip = document.createElement('span')
+    editToolTip.className = 'edit-tool-tip'
+    editToolTip.textContent = 'one edit at a time'
+    editWrapper.appendChild(editBtn)
+    editWrapper.appendChild(editToolTip)
+    // buttonWrapper.appendChild(editBtn)
+    // buttonWrapper.appendChild(editToolTip)
+    buttonWrapper.appendChild(editWrapper)
     datesWrapper.appendChild(buttonWrapper)
 
     datesWrapper.appendChild(dates);

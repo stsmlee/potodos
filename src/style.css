@@ -102,6 +102,11 @@ h1 {
   cursor: pointer;
 }
 
+.edit-wrapper {
+  cursor: pointer;
+  position: relative;
+}
+
 .edit-button {
   display: flex;
   align-items: center;
@@ -112,7 +117,36 @@ h1 {
   font-size: .8em;
   border: 1px solid black;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: inherit;
+}
+
+.no-edit {
+  cursor: not-allowed;
+}
+
+.edit-wrapper.no-edit .edit-button{
+  pointer-events: none;
+}
+
+.edit-tool-tip {
+  display: none;
+}
+
+.edit-wrapper.no-edit:hover .edit-tool-tip {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width: fit-content;
+  height: 18px;
+  white-space: nowrap;
+  z-index: 2;
+  background-color: #818181;
+  opacity: .98;
+  color: white;
+  padding: 1px 5px;
+  border-radius: 8px;
+  line-height: 1em;
 }
 
 .dates {

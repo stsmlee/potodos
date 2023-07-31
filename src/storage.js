@@ -71,6 +71,8 @@ export function editTask(e) {
         alert('Please finish your other edit first')
         return;
     };
+    const otherEditBtns = document.querySelectorAll('.edit-wrapper')
+    otherEditBtns.forEach((btn) => btn.classList.toggle('no-edit'))
     const taskid = e.target.id;
     const divid = 'div' + taskid
     const ogTask = document.getElementById(divid)
@@ -103,7 +105,7 @@ export function editTask(e) {
     editDetailsLabel.textContent = 'Details';
     editDetailsLabel.style.fontWeight = 'bold';
     editDetails.id = 'edit-details' + taskid;
-    editDetailsLabel.htmlFor = 'edit-details'
+    editDetailsLabel.htmlFor = 'edit-details' + taskid
     if (taskDict[taskid].details) {
         editDetails.value = taskDict[taskid].details
     } else editDetails.placeholder = "Enter task details (optional)";
@@ -115,7 +117,7 @@ export function editTask(e) {
     editDueDateLabel.textContent = 'Due date (Optional)';
     editDueDateLabel.style.fontWeight = 'bold';
     editDueDate.id = 'edit-due-date' + taskid;
-    editDueDateLabel.htmlFor = 'new-due-date';
+    editDueDateLabel.htmlFor = 'new-due-date' + taskid;
     if (taskDict[taskid].dueDate) {
         editDueDate.value = taskDict[taskid].dueDate;
         editDueDate.min = format(min([parseISO(taskDict[taskid].dueDate), new Date()]), 'yyyy-MM-dd');
@@ -131,8 +133,10 @@ export function editTask(e) {
     cancelBtn.type = 'button';
     cancelBtn.textContent = 'Cancel';
     cancelBtn.classList.add('btn', 'close-btn');
-    cancelBtn.onclick = () => editTaskDiv.replaceWith(ogTask)
-
+    cancelBtn.onclick = () => {
+        editTaskDiv.replaceWith(ogTask)
+        otherEditBtns.forEach((btn) => btn.classList.toggle('no-edit'))
+    };
     editTaskForm.appendChild(editTitleLabel);
     editTaskForm.appendChild(editTitle);
     editTaskForm.appendChild(editDetailsLabel);
@@ -149,7 +153,9 @@ export function editTask(e) {
 function listenForEdits(subBtn) {
     subBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const taskid = e.target.id
+        const taskid = e.target.id;
+        const otherEditBtns = document.querySelectorAll('.edit-button');
+        otherEditBtns.forEach((btn) => btn.classList.toggle('no-edit'));
         let title = document.getElementById('edit-title' + taskid)
         let details = document.getElementById('edit-details' + taskid)
         let dueDate = document.getElementById('edit-due-date' + taskid)
